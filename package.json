@@ -1,0 +1,19 @@
+{
+  "name": "tune-duel",
+  "version": "1.0.0",
+  "description": "A game where users select which track they think has the most Spotify plays",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js --ignore client",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i --force && cd ../client && npm i --force",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
