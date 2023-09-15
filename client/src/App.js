@@ -19,9 +19,9 @@ function App() {
         setUsers(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
-    console.log(users);
+    // console.log(users);
   };
 
   const handleFormChange = (e) => {
@@ -32,21 +32,17 @@ function App() {
     });
   };
 
-  function getCurrentDateTime() {
-    const currentDate = new Date();
-
-    const options = {
-      hour: "2-digit",
-      minute: "2-digit",
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    };
-
-    const formattedDateTime = new Intl.DateTimeFormat("en-US", options).format(
-      currentDate
-    );
-    return formattedDateTime;
+  function formatDateTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+  
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    
+    return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
   }
 
   const handleUserSubmit = (e) => {
@@ -55,14 +51,14 @@ function App() {
       .post("http://localhost:3001/", {
         username: formData.usernameInput,
         score: formData.scoreInput,
-        dateTime: getCurrentDateTime(),
+        dateTime: new Date(),
       })
       .then((response) => {
         console.log(response);
         fetchUserList();
       })
       .catch((error) => {
-        console.log(error, "failure to add user and score");
+        // console.log(error, "failure to add user and score");
       });
   };
 
@@ -92,7 +88,7 @@ function App() {
             <li key={index}>
               <p>{user.username}</p>
               <p>{user.score}</p>
-              <p>{user.dateTime}</p>
+              <p>{formatDateTime(user.dateTime)}</p>
             </li>
           ))}
       </ul>
