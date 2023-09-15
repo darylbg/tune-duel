@@ -31,6 +31,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", async (req, res) => {
+    
     try {
         const users = await User.find();
 
