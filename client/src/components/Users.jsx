@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function App() {
+function Users() {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
     usernameInput: "",
@@ -81,7 +81,6 @@ function App() {
         ></input>
         <button type="submit">Submit</button>
       </form>
-      <h1>hello world</h1>
       <ul>
         {users &&
           users.map((user, index) => (
@@ -96,4 +95,4 @@ function App() {
   );
 }
 
-export default App;
+export default Users;
